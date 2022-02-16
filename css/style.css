@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 6.5rem;
+    margin-top: 8rem;
   }
 
   #info__container {
@@ -23,8 +23,28 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 6.5rem;
-    background-color: lightblue;
+    margin-top: 8rem;
+    box-shadow: 0.2rem 0.2rem 1rem rgb(46 54 80 / 15%);
+    border-radius: 1rem;
+    margin-right: 1rem;
+  }
+
+
+  #info__container2 {
+    display: none;
+    height: 50vh;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8rem;
+    box-shadow: 0.2rem 0.2rem 1rem rgb(46 54 80 / 15%);
+    border-radius: 1rem;
+  }
+
+
+  .favorite__Pokemons h1 {
+    margin: 1rem;
   }
 
   .mainHeader {
@@ -33,11 +53,6 @@
     position: sticky; 
     top: 0;
   }
-
-  svg {
-    z-index: -99;
-  }
-
 
   .titleSection{
     width: 100%;
@@ -57,7 +72,7 @@
     max-height: 12rem;
     margin: 0.5rem;
   }
-  
+
   .pokeLike__container {
     height: 6rem;
     margin-left: 1rem;
@@ -74,3 +89,64 @@
     pointer-events: all;
   }
   
+
+  .favorite__Info{
+    position: relative;
+    height: 50rem;
+    overflow-y: scroll;
+    margin: 1.5rem;
+  }
+
+
+  .favorite__InfoResponsive {
+    position: relative;
+    height: 22rem;
+    overflow-y: scroll;
+    margin: 1.5rem; 
+  }
+
+  
+  .favorite__container {
+    padding: 0.5rem;
+  }
+
+
+  .favorite__container a {
+    margin-left: 1rem;
+  }
+
+
+  .favorite__Pokemons{
+    align-self: flex-start;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .delete-pokemon{
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 850px) {
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #info__container2{
+      display: block;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      width: 80vw;
+    }
+
+    #info__container {
+      display: none;
+    }
+    #poke__container{
+      width: 100vw;
+    }
+  }
