@@ -51,6 +51,7 @@
     height: 5rem;
     background-color: red;
     position: sticky; 
+    z-index: 99;
     top: 0;
   }
 
@@ -111,7 +112,7 @@
   }
 
 
-  .favorite__container a {
+  .favorite__container button {
     margin-left: 1rem;
   }
 

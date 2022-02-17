@@ -1,7 +1,9 @@
+// call function to retrieve pokemon data
 const fetchPokemon = () => {
   retrievePokemon();
 };
 
+// sends request to api returning all pokemons in a range
 function retrievePokemon() {
   for (let i = 1; i <= 150; i++) {
     var pokeRequest = $.ajax({
@@ -54,7 +56,6 @@ function retrievePokemon() {
 
 
       // setting up children
-
       pokemon_image_container.appendChild(pokemon_image)
       pokemon_image_container.appendChild(pokemon_like_container)
       pokemon_like_container.appendChild(pokemon_like)
@@ -67,7 +68,7 @@ function retrievePokemon() {
 
       pokemons.appendChild(pokemon_card)
 
-
+      // setting up pokemon like buttons
       let likes = document.getElementsByClassName('likable')
 
       if (likes.length == 150) {
@@ -90,7 +91,6 @@ function retrievePokemon() {
 
               localStorage.removeItem(this.id)
               addpokemon()
-              location.reload()
             }
           });
         }
@@ -99,9 +99,10 @@ function retrievePokemon() {
   }
 }
 
+
 fetchPokemon();
 
-
+// retrieve all saved data from localstorage
 function retrieveAllStorage() {
   let localStorageItems = []
   let keys = Object.keys(localStorage);
@@ -112,12 +113,13 @@ function retrieveAllStorage() {
   return localStorageItems;
 }
 
-
+// remove pokemon from localstorage
 function removePokemon(pokemon){
   localStorage.removeItem(pokemon)
 }
 
 
+// add pokemons to DOM
 function addpokemon() {
   let favoriteInfo = document.getElementsByClassName('favorite__Info')[0];
   let favoriteInfoResponsive = document.getElementsByClassName('favorite__InfoResponsive')[0];
@@ -130,11 +132,11 @@ function addpokemon() {
     let favorite_container = document.createElement("div")
     favorite_container.classList.add("favorite__container")
     let linkPokemon = document.createElement("button")
+    linkPokemon.classList.add('btn')
     linkPokemon.classList.add('delete-pokemon')
     let deletePokemon = document.createElement("i")
     deletePokemon.classList.add('fas')
     deletePokemon.classList.add('fa-trash')
-    deletePokemon.classList.add('delete-pokemon')
     linkPokemon.appendChild(deletePokemon)
   
     let strongPokemon = document.createElement('b')
@@ -151,19 +153,25 @@ function addpokemon() {
   })
 }
 
+
 addpokemon()
 
+
+// on dom completely loaded
 document.addEventListener("DOMContentLoaded", function(event) {
-  let deletar = document.getElementsByClassName('delete-pokemon')
-  
-  for(let i = 0; i < deletar.length; i++){
-    deletar[i].addEventListener('click', function(){
-      localStorage.removeItem(deletar[i].parentElement.parentElement.firstChild.innerText)
-      addpokemon()
-      location.reload()
-    })
-  }
+  let deletar = document.querySelectorAll('.delete-pokemon')
+  deletar.forEach(item => {
+    item.addEventListener('click',deleteFromFav)
+  })
 });
 
-
-
+// remove pokemons from favorites (unlikes)
+function deleteFromFav() {
+  removePokemon(this.closest('div').firstChild.innerText)
+  let liked = document.getElementById(`${this.closest('div').firstChild.innerText}`)
+  this.closest('div').remove(); 
+  liked.classList.remove("fa-solid")
+  liked.classList.remove("fa-heart")
+  liked.classList.add("far")
+  liked.classList.add("fa-heart")
+}
